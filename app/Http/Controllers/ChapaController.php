@@ -25,7 +25,7 @@ class ChapaController extends Controller
             "phone_number" => "0912345678",
             "tx_ref" => $refNo,
             "callback_url" => "https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60",
-            "return_url" => "http://127.0.0.1:8000/chapa/paid/{$refNo}",
+            // "return_url" => "http://127.0.0.1:8000/chapa/paid/{$refNo}",
             "customization" => [
                 "title" => "Payment",
                 "description" => "I love online payments."
@@ -45,7 +45,6 @@ class ChapaController extends Controller
         ])->get('https://api.chapa.co/v1/transaction/verify/' . $txRef);
 
         $info = json_decode($response->body())->data;
-        // dd($info);
 
         return view('success', compact('info'));
     }
